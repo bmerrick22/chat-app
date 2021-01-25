@@ -1,0 +1,31 @@
+.chat-send-container{
+    height: 100%;
+    width: 100%;
+}
+
+.send-form{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.input-group{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.input-group input{
+    width: 80%;
+
+}
+
+.input-group button{
+    border-color: #4DA8DA;
+    color: #4DA8DA;
+}
+
+.input-group button:hover{
+    background-color: #4DA8DA;
+    color: #EEFBFB;
+}

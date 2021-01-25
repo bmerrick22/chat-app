@@ -1,0 +1,12 @@
+<div class="chat-send-container">
+    <form class="send-form" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+        <div class="input-group">
+            <input type="text" formControlName="message">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="submit">
+                    <fa-icon [icon]="sendIcon"></fa-icon>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
