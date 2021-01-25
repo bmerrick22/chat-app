@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       if(data.status){
         console.log("Valid login");
         this.loginResult = true;
+        localStorage.setItem('currentUser', data.username)
         this.router.navigate(['chat']);
       } else{
         this.loginResult = false;
@@ -61,8 +62,9 @@ export class LoginComponent implements OnInit {
     let password = this.loginForm.get('password').value;
     console.log("Username: " + username);
     console.log("Password: " + password);
-    this.loginForm.reset();
 
+    this.loginForm.reset(); //Reset the form
+    this.loginResult = true; //Reset the result -> overriden by observable
     this.chatService.userLogin({username: username, password: password})
   }
 

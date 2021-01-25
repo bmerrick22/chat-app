@@ -17,6 +17,7 @@ export class ChatService {
     //Establish the connection to the socket
     this.establishSocket();
     //Call data subcscription to message logs
+  //  this.onDisconnect();
   }
 
   establishSocket() {
@@ -25,7 +26,7 @@ export class ChatService {
   }
 
   loginStatus() {
-    let observable = new Observable<{ username: String, status: Boolean }>(observer => {
+    let observable = new Observable<{ username: string, status: boolean }>(observer => {
       this.socket.on('login-status', (data) => {
         observer.next(data);
       });
@@ -70,6 +71,13 @@ export class ChatService {
     return observable;
   }
 
+
+  onDisconnect(){
+    let data = {username: this.user, message: 'has left the room'};
+    this.socket.on('disconnect',()=>{
+      this.socket.emit('message-sent', data);
+    })
+  }
 
 
 

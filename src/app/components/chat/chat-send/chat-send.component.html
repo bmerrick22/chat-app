@@ -1,12 +1,14 @@
 <div class="chat-send-container">
     <form class="send-form" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
         <div class="input-group">
-            <input type="text" formControlName="message">
+            <input (keyup)="updateCount()" type="text" formControlName="message" placeholder="Enter message...">
             <div class="input-group-append">
-                <button class="btn btn-outline-primary" type="submit">
+                <button [disabled]="messageForm.invalid" class="btn btn-outline-primary" type="submit">
                     <fa-icon [icon]="sendIcon"></fa-icon>
                 </button>
             </div>
         </div>
     </form>
+    <p class="char-count">Remaining characters: {{ charCount }}</p>
+   
 </div>

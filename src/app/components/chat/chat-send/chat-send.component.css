@@ -11,13 +11,21 @@
 .input-group{
     width: 100%;
     display: flex;
+    flex-wrap: nowrap;
     justify-content: center;
     margin-top: 10px;
 }
 
 .input-group input{
-    width: 80%;
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid #4DA8DA;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
 
+input, select, textarea{
+    color: #EEFBFB;
 }
 
 .input-group button{
@@ -28,4 +36,9 @@
 .input-group button:hover{
     background-color: #4DA8DA;
     color: #EEFBFB;
+}
+
+.char-count{
+    font-size: small;
+    color: rgb(117, 117, 117);
 }

@@ -35,8 +35,8 @@ module.exports = (io) => {
             newMessage(msg);
         });
 
-        socket.on(events.DISCONNECT, (user) => {
-            disconnectUser(user);
+        socket.on(events.DISCONNECT, () => {
+            //disconnectUser(user);
             console.log('User disconnected');
         });
 

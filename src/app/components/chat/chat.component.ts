@@ -10,11 +10,11 @@ import { ChatService } from 'src/app/services/chat.service';
 })
 export class ChatComponent implements OnInit {
 
+  chattrIcon: FontAwesomeModule = faPaperPlane;
   sendIcon: FontAwesomeModule = faPaperPlane;
   messages:any = [];
 
   constructor(private chatService: ChatService) {
-    this.chatService.newUser();
   }
 
   ngOnInit(): void {
