@@ -5,10 +5,25 @@ This is a personal project I took on with the goal of learning more about NodeJS
 
 ## Testing
 If you would like to run and test the application for yourself, please follow the instructions below.
-
+After downloading the project, run the following.
 ```bash
-$ ng serve
+$ npm install
 ```
+Once completed, run
+```bash
+$ npm install
+```
+to begin the angular application.
+Open a new terminal and enter
+```bash
+$ cd server
+$ npm start
+```
+Once completed, open a new browser and navigate to 
+```bash
+localhost:4200
+```
+
 ## Project Details
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
