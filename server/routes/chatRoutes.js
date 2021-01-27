@@ -1,37 +1,32 @@
 const events = require('../events');
 const ServerData = require('../data/serverData');
+const { LOGIN_ATTEMPT } = require('../events');
 const serverData = new ServerData();
 module.exports = (io) => {
 
     const newMessage = (msg) => {
-        console.log(msg);
         io.emit(events.NEW_MESSAGE, msg);
     };
 
-    const userLogin = (socket, data) => {
-        let result = serverData.verifyLogin(data);
-        socket.emit(events.LOGIN_STATUS, {username: data.username, status: result})
-    };
-
-    const disconnectUser = (user) =>{
+    const disconnectUser = (user) => {
         serverData.removeConnectedUser(user);
-        io.emit(events.USER_LEFT, serverData.getConnectedUsers());  
+        io.emit(events.USER_LEFT, serverData.getConnectedUsers());
     };
 
-    const newUser = (user) =>{
-        serverData.addConnectedUser(user)
+    const newUser = (user) => {
+        serverData.addConnectedUser(user);
         io.emit(events.CONNECTED_USERS, serverData.getConnectedUsers());
+    };
+
+    const loginAttempt = (socket, attempt) => {
+        //Return the username and status of the attempted login
+        socket.emit(events.LOGIN_RESULT, {username: attempt.username, status: serverData.verifyLogin(attempt)});
     };
 
     io.on(events.CONNECTION, (socket) => {
         console.log("User Connected");
 
-        socket.on(events.USER_LOGIN, (data) => {
-            userLogin(socket, data);
-        });
-
         socket.on(events.MESSAGE_SENT, (msg) => {
-            console.log(msg);
             newMessage(msg);
         });
 
@@ -42,6 +37,11 @@ module.exports = (io) => {
 
         socket.on(events.NEW_USER, (user) => {
             newUser(user);
+        });
+
+        //User login has been attempted
+        socket.on('login-attempt', (attempt) => {
+            loginAttempt(socket, attempt);
         });
     });
 };

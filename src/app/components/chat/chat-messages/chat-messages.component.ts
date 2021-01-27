@@ -10,6 +10,7 @@ export class ChatMessagesComponent implements OnInit {
   messages: any = [];
 
   constructor(private chatService: ChatService) {
+    console.log(sessionStorage);
     this.enterChat();
     this.syncChat();
   }

@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 body{
-    background-color: #12232E;
+    background-color: #001939;/*#12232E;*/
     height: 100%;
     width: 100%;
     font-family:Arial, sans-serif;
+    margin: 0px;
+    padding: 0px;
 }
 
 

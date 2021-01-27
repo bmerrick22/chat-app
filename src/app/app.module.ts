@@ -10,6 +10,7 @@ import { ChatMessagesComponent } from './components/chat/chat-messages/chat-mess
 import { ChatSendComponent } from './components/chat/chat-send/chat-send.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChatUsersComponent } from './components/chat/chat-users/chat-users/chat-users.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { ChatUsersComponent } from './components/chat/chat-users/chat-users/chat
     ChatComponent,
     ChatMessagesComponent,
     ChatSendComponent,
-    ChatUsersComponent
+    ChatUsersComponent,
+    PageNotFoundComponent,
+    
   ],
   imports: [
     BrowserModule,

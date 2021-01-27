@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { AuthService } from 'src/app/services/auth.service';
 import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
@@ -13,34 +14,49 @@ import { ChatService } from 'src/app/services/chat.service';
 export class LoginComponent implements OnInit {
   @ViewChild('login') loginContainer: ElementRef;
   loginForm: FormGroup;
-  loginResult: Boolean = true;
+  loginResult: Boolean = false;
+  loginError: Boolean = false;
   errorIcon: FontAwesomeModule = faExclamationTriangle;
+  returnUrl;
+  constructor(
+    private router: Router,
+    private chatService: ChatService,
+    private authService: AuthService) {
 
-  constructor(private router: Router, private chatService: ChatService) {
     this.constructForm();
-    this.syncLogin();
+
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    //this.checkUserAuthenticated();
   }
 
-  syncLogin() {
-    this.chatService.loginStatus().subscribe((data) => {
-      console.log("Received login status result");
-      if(data.status){
-        console.log("Valid login");
-        this.loginResult = true;
-        localStorage.setItem('currentUser', data.username)
+  checkUserAuthenticated() {
+    //Check to see with auth service if user already logged in
+    console.log(this.authService.getCurrentUser());
+    if(this.authService.getCurrentUser())
+      this.router.navigate(['chat']);
+  }
+
+
+  loginStatus() {
+    this.authService.getLoginStatus().subscribe((credentials) => {
+      if(credentials.status == null)
+        return;
+
+      console.log("Login status received");
+      console.log(credentials);
+      this.loginResult = true;
+      if (credentials.status) {
+        this.loginError = false;
         this.router.navigate(['chat']);
-      } else{
-        this.loginResult = false;
-        console.log("Invalid login");
+      } else {
+        this.loginError = true;
       }
-    },
-      (error) => {
-        console.log("Server Error");
-      });
 
+    }, (error) => {
+      console.log("Server Error - " + error);
+    });
   }
 
   constructForm() {
@@ -53,19 +69,25 @@ export class LoginComponent implements OnInit {
         Validators.required
       ])
     });
-
   }
 
   onSubmit() {
-    console.log("Collecting login information...");
-    let username = this.loginForm.get('username').value;
-    let password = this.loginForm.get('password').value;
+    //Collect and display login attempt
+    const username = this.loginForm.get('username').value;
+    const password = this.loginForm.get('password').value;
+    console.log("Login Attempt");
     console.log("Username: " + username);
     console.log("Password: " + password);
 
-    this.loginForm.reset(); //Reset the form
-    this.loginResult = true; //Reset the result -> overriden by observable
-    this.chatService.userLogin({username: username, password: password})
+    //Attempt login through authorization service
+    this.authService.attemptLogin(username, password);
+
+    //Listen for the login result
+    this.loginStatus();
+    //Reset the form
+    this.loginError = false;
+    this.loginForm.reset();
+
   }
 
 }

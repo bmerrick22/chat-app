@@ -57,10 +57,16 @@ input, select, textarea{
 }
 
 .error{
-    position: absolute;
-    top: -40px;
+   /* position: absolute;
+    top: -40px;*/
     color: #d9534f;
-    animation: fadeIn 0.25s linear;
+   /* animation: fadeIn 0.25s linear;*/
+}
+
+.fade {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+  animation-duration: 1s;
 }
 
 .shake {

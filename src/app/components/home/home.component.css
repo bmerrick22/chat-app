@@ -8,3 +8,15 @@
     position: relative;
 }
 
+.home-logo{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-logo img{
+    width: 270px;
+}
+    
+

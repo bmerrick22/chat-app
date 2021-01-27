@@ -8,6 +8,18 @@
     color: #EEFBFB;
 }
 
+.chattr-logo{
+    justify-self: flex-start;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chattr-logo img{
+    width: 150px;
+}
+
 .chat-container{
     width: 60%;
     height: 85%;
@@ -19,9 +31,22 @@
 
 .chat-title{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 20px;
 }
+
+.chat-title h1{
+    font-family: Arial, sans-serif;
+    font-weight: bolder;
+    color: white;
+}
+
+.chat-title fa-icon{
+    font-size: xx-large;
+}
+
 
 
 .chat-users-container{

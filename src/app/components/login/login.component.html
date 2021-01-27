@@ -1,6 +1,6 @@
 <div #login class="login-container">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-        <div [ngClass]="{'shake': !loginResult }" *ngIf="!loginResult"  id="error" class="error">
+        <div class="error" *ngIf="loginResult && loginError"  id="error">
             <fa-icon [icon]="errorIcon"></fa-icon>
             <p>Invalid username or password</p>
         </div>
@@ -13,7 +13,7 @@
             <input placeholder="Password" type="password" formControlName="password" autocomplete="off">
         </div>
         <div class="login-button">
-            <button [disabled]="!loginForm.valid" class="btn btn-primary">Log In</button>
+            <button [ngClass]="{'shake': loginError}" [disabled]="!loginForm.valid" class="btn btn-primary">Log In</button>
         </div>
     </form>
 </div>

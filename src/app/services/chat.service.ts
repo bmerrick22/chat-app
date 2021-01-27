@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { io } from 'socket.io-client';
+import { AuthService } from './auth.service';
+import { SocketService } from './socket.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,77 +9,45 @@ import { io } from 'socket.io-client';
 
 
 export class ChatService {
-
-  private CONNECTION_POINT = 'http://localhost:3000';
-  private socket: any;
   private user: string;
 
-  constructor() {
-    //Establish the connection to the socket
-    this.establishSocket();
-    //Call data subcscription to message logs
-  //  this.onDisconnect();
-  }
+  constructor(
+    private socketService: SocketService,
+    private authService: AuthService
+  ) { }
 
-  establishSocket() {
-    this.socket = io(this.CONNECTION_POINT, { transports: ['websocket'] });
-    console.log("Established Connection to Node Server");
-  }
-
-  loginStatus() {
-    let observable = new Observable<{ username: string, status: boolean }>(observer => {
-      this.socket.on('login-status', (data) => {
-        observer.next(data);
-      });
-      return () => { this.socket.disconnect(); }
-    });
-    return observable;
-  }
 
   sendMessage(message) {
-    let data = {username: this.user, message: message};
+    console.log(this.authService.getCurrentUser());
+    let data = { username: this.authService.getCurrentUser(), message: message };
     console.log(data);
-    this.socket.emit('message-sent', data);
+    this.socketService.getSocket().emit('message-sent', data);
   }
 
-  userLogin(data) {
-    this.user = data.username;
-    this.socket.emit('user-login', data);
-  }
 
   newMessage() {
     let observable = new Observable<{ user: String, message: String }>(observer => {
-      this.socket.on('new-message', (data) => {
+      this.socketService.getSocket().on('new-message', (data) => {
         observer.next(data);
       });
-      return () => { this.socket.disconnect(); }
+      return () => { this.socketService.getSocket().disconnect(); }
     });
     return observable;
   }
 
-  newUser(){
-    console.log(this.user);
-    this.socket.emit('new-user', this.user);
+  newUser() {
+    console.log(this.authService.getCurrentUser());
+    this.socketService.getSocket().emit('new-user', this.authService.getCurrentUser());
   }
 
-  getConnectedUsers(){
+  getConnectedUsers() {
     let observable = new Observable<[]>(observer => {
-      this.socket.on('connected-users', (data) => {
+      this.socketService.getSocket().on('connected-users', (data) => {
         observer.next(data);
       });
-      return () => { this.socket.disconnect(); }
+      return () => { this.socketService.getSocket().disconnect(); }
     });
     return observable;
   }
-
-
-  onDisconnect(){
-    let data = {username: this.user, message: 'has left the room'};
-    this.socket.on('disconnect',()=>{
-      this.socket.emit('message-sent', data);
-    })
-  }
-
-
 
 }

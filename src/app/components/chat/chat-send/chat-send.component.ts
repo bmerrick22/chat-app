@@ -18,10 +18,11 @@ export class ChatSendComponent implements OnInit {
     this.buildForm();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   updateCount() {
-    this.charCount = 280 - this.messageForm.get('message').value.length;
+    if(this.messageForm.get('message').value)
+      this.charCount = 280 - (this.messageForm.get('message').value.length || 0);
   }
 
 
@@ -29,11 +30,18 @@ export class ChatSendComponent implements OnInit {
     console.log("Buildling Message form group");
     this.messageForm = new FormGroup({
       message: new FormControl('', [
-        Validators.required, 
+        Validators.required,
         Validators.maxLength(280),
-        Validators.minLength(1)
+        Validators.minLength(1),
+        this.noWhitespaceValidator
       ]),
     });
+  }
+
+  public noWhitespaceValidator(control: FormControl) {
+    const isWhitespace = (control.value || '').trim().length === 0;
+    const isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true };
   }
 
   onSubmit() {

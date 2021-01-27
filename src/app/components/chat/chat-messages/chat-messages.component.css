@@ -3,11 +3,18 @@
     height: 100%;
     border: 1px solid #4DA8DA;
     border-radius: 4px;
-    background-color: #203647;
+    /*background-color: #203647;*/
+    
 }
 
 .message-text{
-    margin: 0px;
+    margin: 3px;
     padding: 0px;
     overflow-wrap: break-word;
+    color: white;
+}
+
+
+.username{
+    color: rgb(158, 157, 157);
 }
