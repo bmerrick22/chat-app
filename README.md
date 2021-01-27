@@ -1,4 +1,4 @@
-![chattr logo](./src/assets/images/chattr.png =200x20)
+![chattr logo](./src/assets/images/chattr.png)
 
 
 ## About
