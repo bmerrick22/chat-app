@@ -1,4 +1,4 @@
-<div class="chat-messages-container">
+<div id="messageBody" #messageBody class="chat-messages-container">
     <div *ngFor="let message of messages">
         <p class="message-text"><strong class="username">{{message.username}}: </strong>{{message.message}}</p>
     </div>

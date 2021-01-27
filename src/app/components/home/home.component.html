@@ -1,8 +1,8 @@
 <div class="home-container">
-    <div class="home-logo">
+    <div [ngClass]="{'logo-animation': animation}" class="home-logo">
        <img src="../../../assets/images/chattr.png" alt="chattr logo">
     </div>
-    <div class="user-action">
+    <div [ngClass]="{'input-animation': animation}" class="user-action">
         <app-login></app-login>
     </div>
 </div>

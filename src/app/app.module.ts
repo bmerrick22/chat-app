@@ -11,6 +11,7 @@ import { ChatSendComponent } from './components/chat/chat-send/chat-send.compone
 import { ReactiveFormsModule } from '@angular/forms';
 import { ChatUsersComponent } from './components/chat/chat-users/chat-users/chat-users.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { LogoutComponent } from './components/chat/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     ChatSendComponent,
     ChatUsersComponent,
     PageNotFoundComponent,
+    LogoutComponent,
     
   ],
   imports: [

@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +7,25 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  planeIcon: FontAwesomeModule = faPaperPlane;
+  animation: boolean;
   constructor() { }
 
   ngOnInit(): void {
+      //Run the animation for home screen
+      this.loadAnimation();
+   }
+
+  ngAfterViewInit(): void {
+  }
+
+  loadAnimation(){
+    if(sessionStorage.getItem('visited')){
+      this.animation = false;
+    }else{
+      this.animation = true;
+      sessionStorage.setItem('visited', 'true')
+    }
+
   }
 
 }

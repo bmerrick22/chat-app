@@ -77,4 +77,12 @@ export class AuthService {
     //Update the observer to notify an unsuccessful login
     this.setLoginStatus(credentials.status);
   }
+
+
+  logout(){
+    //Remove the session storage for the current user
+    sessionStorage.removeItem('currentUser');
+    //Navigate to the home page
+    this.router.navigate(['']);
+  }
 }

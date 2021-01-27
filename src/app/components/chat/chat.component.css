@@ -72,6 +72,21 @@
     height: 15%;
 }
 
+
+.load-animation{
+    animation: load;
+    animation-duration: 1s;
+}
+
+@keyframes load {
+    0% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+}
+
 /* mobiles (landscape and portrait) */
 @media only screen and (max-width: 500px) {
     .chat-container{

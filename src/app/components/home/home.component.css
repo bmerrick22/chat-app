@@ -8,6 +8,8 @@
     position: relative;
 }
 
+
+
 .home-logo{
     width: 100%;
     display: flex;
@@ -18,5 +20,41 @@
 .home-logo img{
     width: 270px;
 }
+
+.logo-animation{
+    animation: float-in;
+    animation-duration: 3s;
+}
+
+.input-animation{
+    animation: load-in;
+    animation-duration: 3s;
+}
+
+@keyframes load-in{
+    0% {
+        opacity: 0%;
+    }
+    80% {
+        opacity: 0%;
+    }
+    100%{
+        opacity: 100%;
+    }
+}
     
 
+@keyframes float-in {
+    0% { 
+        opacity: 0%;
+        transform: translateY(125px);
+    }
+    40% { 
+        opacity: 100%;
+        transform: translateY(125px);
+    }
+    80% {
+        opacity: 100%;
+        transform: translateY(0px);
+    }
+}

@@ -13,9 +13,13 @@ export class ChatSendComponent implements OnInit {
   charCount: number = 280;
   messageForm: FormGroup;
   sendIcon: FontAwesomeModule = faPaperPlane;
+  nextReplyTime: number;
+  messageDelay: number;
 
   constructor(private chatService: ChatService) {
     this.buildForm();
+    const currentTime = new Date();
+    this.nextReplyTime = currentTime.getTime();
   }
 
   ngOnInit(): void { }
