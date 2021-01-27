@@ -1,4 +1,5 @@
-<div style="text-align:center"><img alt="chattr logo" src="./src/assets/images/chattr.png" width="40%"></div>
+<img alt="chattr-logo" src="./src/assets/images/chattr.png" width="40%">
+
 ## About
 This is a personal project I took on with the goal of learning more about NodeJS, WebSockets, and how Angular fits into it all. It is a simple chat application where users are prompted with a login, and upon successful login, re-directed to the main chat home page where you can begin chatting. This is still a work in progress, but please enjoy my progress so far! 
 
@@ -34,4 +35,3 @@ password: root2
 
 ## Project Details
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
-
