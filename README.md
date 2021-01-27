@@ -32,6 +32,8 @@ username: root2
 password: root2
 ```
 
+Begin chatting in separate browsers!
+
 
 ## Project Details
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
