@@ -1,5 +1,4 @@
-<img alt="chattr logo" src="./src/assets/images/chattr.png" width="40%">
-
+<div style="text-align:center"><img alt="chattr logo" src="./src/assets/images/chattr.png" width="40%"></div>
 ## About
 This is a personal project I took on with the goal of learning more about NodeJS, WebSockets, and how Angular fits into it all. It is a simple chat application where users are prompted with a login, and upon successful login, re-directed to the main chat home page where you can begin chatting. This is still a work in progress, but please enjoy my progress so far! 
 
