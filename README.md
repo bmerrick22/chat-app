@@ -1,4 +1,4 @@
-![chattr logo](./src/assets/images/chattr.png)
+![chattr logo](./src/assets/images/chattr.png)<!-- .element width-"50%" -->
 
 
 ## About
